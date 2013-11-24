@@ -15,6 +15,14 @@ contexts provided by the JavaScriptCore framework.
 
 - JavaScriptCore framework
 
+## Installation with [CocoaPods](http://cocoapods.org/)
+
+Add this line to your [Podfile](http://docs.cocoapods.org/podfile.html):
+
+```ruby
+pod "CDLJSONPResponseSerializer", "~> 0.9"
+```
+
 ## Running unit tests
 
 In the `Tests/` directory, run `pod install` to set up the workspace. Then you
