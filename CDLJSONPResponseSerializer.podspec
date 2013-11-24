@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'CDLJSONPResponseSerializer'
-  s.version  = '0.9.0'
+  s.version  = '0.9.1'
   s.license  = 'MIT'
   s.summary  = 'A JSONP response serializer for AFNetworking'
   s.homepage = 'https://github.com/clundie/CDLJSONPResponseSerializer'
