@@ -25,8 +25,23 @@ pod "CDLJSONPResponseSerializer", "~> 0.9"
 
 ## Running unit tests
 
+### In Xcode
+
 In the `Tests/` directory, run `pod install` to set up the workspace. Then you
 can open the workspace and run tests in the `Tests` project.
+
+### In a terminal
+
+To run the tests from the command line, install
+[xctool](https://github.com/facebook/xctool) with
+[Homebrew](http://brew.sh/):
+
+```bash
+$ brew update
+$ brew install xctool --HEAD
+```
+
+Then, run `rake test`.
 
 ## Security Issues
 
