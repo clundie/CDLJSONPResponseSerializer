@@ -3,6 +3,34 @@
 This is a class to parse JSONP responses with AFNetworking. It uses Javascript
 contexts provided by the JavaScriptCore framework.
 
+## Usage
+
+```objective-c
+#import "AFNetworking.h"
+#import "CDLJSONPResponseSerializer.h"
+```
+
+```objective-c
+NSString     *urlString  = @"http://derp.example/";
+NSString     *callback   = @"foo";
+NSDictionary *parameters = @{@"callback": callback};
+NSURLRequest *request    =
+  [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                URLString:urlString
+                                               parameters:parameters];
+AFHTTPRequestOperation *op =
+  [[AFHTTPRequestOperation alloc] initWithRequest:request];
+op.responseSerializer =
+  [CDLJSONPResponseSerializer serializerWithCallback:callback];
+[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
+                                    id responseObject) {
+  NSLog(@"JSON: %@", responseObject);
+} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+  NSLog(@"Error: %@", error);
+}];
+[[NSOperationQueue mainQueue] addOperation:op];
+```
+
 ## Requirements
 
 - Xcode 5.0
