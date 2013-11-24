@@ -1,0 +1,8 @@
+rvm: 1.9.3
+language: objective-c
+before_install:
+    - brew update
+    - brew uninstall xctool && brew install xctool --HEAD
+    - cd Tests && pod install && cd $TRAVIS_BUILD_DIR
+script: rake test:ios # Travis does not yet support OS X 10.9,
+                      # so we can only run the iOS tests.
