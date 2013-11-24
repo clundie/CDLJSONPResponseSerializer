@@ -3,6 +3,34 @@
 This is a class to parse JSONP responses with AFNetworking. It uses Javascript
 contexts provided by the JavaScriptCore framework.
 
+## Usage
+
+```objective-c
+#import "AFNetworking.h"
+#import "CDLJSONPResponseSerializer.h"
+```
+
+```objective-c
+NSString     *urlString  = @"http://derp.example/";
+NSString     *callback   = @"foo";
+NSDictionary *parameters = @{@"callback": callback};
+NSURLRequest *request    =
+  [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                URLString:urlString
+                                               parameters:parameters];
+AFHTTPRequestOperation *op =
+  [[AFHTTPRequestOperation alloc] initWithRequest:request];
+op.responseSerializer =
+  [CDLJSONPResponseSerializer serializerWithCallback:callback];
+[op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
+                                    id responseObject) {
+  NSLog(@"JSON: %@", responseObject);
+} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+  NSLog(@"Error: %@", error);
+}];
+[[NSOperationQueue mainQueue] addOperation:op];
+```
+
 ## Requirements
 
 - Xcode 5.0
@@ -15,10 +43,33 @@ contexts provided by the JavaScriptCore framework.
 
 - JavaScriptCore framework
 
+## Installation with [CocoaPods](http://cocoapods.org/)
+
+Add this line to your [Podfile](http://docs.cocoapods.org/podfile.html):
+
+```ruby
+pod "CDLJSONPResponseSerializer", "~> 0.9"
+```
+
 ## Running unit tests
+
+### In Xcode
 
 In the `Tests/` directory, run `pod install` to set up the workspace. Then you
 can open the workspace and run tests in the `Tests` project.
+
+### In a terminal
+
+To run the tests from the command line, install
+[xctool](https://github.com/facebook/xctool) with
+[Homebrew](http://brew.sh/):
+
+```bash
+$ brew update
+$ brew install xctool --HEAD
+```
+
+Then, run `rake test`.
 
 ## Security Issues
 
