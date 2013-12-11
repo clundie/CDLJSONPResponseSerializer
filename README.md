@@ -1,5 +1,7 @@
 # CDLJSONPResponseSerializer
 
+[![Build Status](https://travis-ci.org/clundie/CDLJSONPResponseSerializer.png?branch=master)](https://travis-ci.org/clundie/CDLJSONPResponseSerializer)
+
 This is a class to parse JSONP responses with AFNetworking. It uses Javascript
 contexts provided by the JavaScriptCore framework.
 
